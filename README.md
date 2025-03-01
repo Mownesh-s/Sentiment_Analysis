@@ -52,9 +52,8 @@ The deep learning model consists of:
 
 ### Training Visualization
 The following plots help understand model performance:
-- **Accuracy Curve:** ![Accuracy Curve]![image](https://github.com/user-attachments/assets/8f61f2b4-9e50-46da-88f8-cd9cb58308b4)
-
-- **Loss Curve:** ![Loss Curve]![image](https://github.com/user-attachments/assets/4d499b10-3372-4bd4-b46b-224047313713)
+- **Accuracy & Loss Curve**
+  ![image](https://github.com/user-attachments/assets/666d8371-d9db-4d3e-9948-0b2654bb7da9)
 
 ## Evaluation Metrics
 The model's performance is assessed using:
