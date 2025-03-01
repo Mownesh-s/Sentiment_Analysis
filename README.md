@@ -1,19 +1,19 @@
 # Sentiment Analysis with Deep Learning
 
 ## Project Overview
-This project implements a sentiment analysis model using deep learning. It classifies text data as positive or negative using an LSTM-based neural network trained on a dataset from the `datasets` library.
+This project implements a sentiment analysis model using deep learning. It classifies text data as positive , negative and neutral using an LSTM-based neural network trained on a dataset from the `datasets` library.
 
 ## Features
 - Uses TensorFlow and Keras for deep learning model implementation.
 - Processes dataset from the `datasets` library.
-- Includes data preprocessing steps such as tokenization and normalization.
+- Includes data preprocessing steps such as tokenization.
 - Uses an LSTM-based model for sentiment classification.
 - Evaluates model performance using accuracy and loss metrics.
 - Visualizes training progress using accuracy and loss curves.
 - Generates predictions on new text inputs.
 
 ## Dataset
-The dataset is sourced from the `datasets` library and contains labeled text data for sentiment classification. It consists of:
+The dataset is "yelp_review_full" which is sourced from the `datasets` library and contains labeled text data for sentiment classification. It consists of:
 - Positive and negative sentiment labels.
 - A large collection of text samples for training and evaluation.
 
@@ -34,8 +34,10 @@ jupyter notebook Sentiment_Analysis.ipynb
 - Text preprocessing includes:
   - Tokenization
   - Stopword removal
-  - Normalization
   - Padding sequences
+
+ ## Used GloVe Embedding 
+Used pre trained glove embedding to make the model concentrate on classifying the inputs.
 
 ## Model Architecture
 The deep learning model consists of:
@@ -50,8 +52,10 @@ The deep learning model consists of:
 
 ### Training Visualization
 The following plots help understand model performance:
-- **Accuracy Curve:** ![Accuracy Curve](images/accuracy_curve.png)
-- **Loss Curve:** ![Loss Curve](images/loss_curve.png)
+- **Accuracy Curve:** ![Accuracy Curve](![image](https://github.com/user-attachments/assets/8f61f2b4-9e50-46da-88f8-cd9cb58308b4)
+)
+- **Loss Curve:** ![Loss Curve](![image](https://github.com/user-attachments/assets/4d499b10-3372-4bd4-b46b-224047313713)
+)
 
 ## Evaluation Metrics
 The model's performance is assessed using:
@@ -61,13 +65,21 @@ The model's performance is assessed using:
 ## Results
 After training, the model achieves competitive accuracy in classifying sentiments. The loss curve helps in understanding model optimization.
 
+## Test Accuracy
+Model reached a Test Accuracy: 0.8193-(82%)
+
 ## Making Predictions
 Use the trained model to predict sentiment for new text inputs:
 ```python
-text = "I love this product! It's amazing."
-prediction = model.predict([text])
-print("Predicted Sentiment:", "Positive" if prediction > 0.5 else "Negative")
+def predict_sentiment(text):
+    seq = tokenizer.texts_to_sequences([text])
+    padded = pad_sequences(seq, maxlen=max_length, padding='post', truncating='post')
+    pred = model.predict(padded)
+    labels = ['Negative', 'Neutral', 'Positive']
+    return labels[np.argmax(pred)]
 ```
+## Sample Predictions
+![image](https://github.com/user-attachments/assets/60a6ab69-d7c7-419c-a0c4-b76073e549b6)
 
 ## Future Improvements
 - Implement hyperparameter tuning.
